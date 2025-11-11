@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 export default function WaitlistForm() {
   const [name, setName] = useState('')
@@ -37,21 +38,28 @@ export default function WaitlistForm() {
   }
 
   return (
-    <form onSubmit={submit} className="w-full max-w-xl space-y-3">
+    <motion.form
+      onSubmit={submit}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.6 }}
+      className="w-full max-w-xl space-y-3"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <input
           type="text"
           placeholder="Your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-xl border border-white/30 bg-white/70 backdrop-blur placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400"
+          className="w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/40 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400/60"
         />
         <input
           type="email"
           placeholder="Email address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-xl border border-white/30 bg-white/70 backdrop-blur placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400"
+          className="w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/40 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400/60"
         />
       </div>
       <input
@@ -59,20 +67,21 @@ export default function WaitlistForm() {
         placeholder="Preferred notes (optional)"
         value={note}
         onChange={(e) => setNote(e.target.value)}
-        className="w-full rounded-xl border border-white/30 bg-white/70 backdrop-blur placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400"
+        className="w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/40 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400/60"
       />
       <button
         type="submit"
         disabled={loading}
-        className="w-full md:w-auto rounded-xl bg-amber-600 hover:bg-amber-700 disabled:opacity-60 text-white font-semibold px-6 py-3 shadow-lg shadow-amber-600/30 transition"
+        className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-gradient-to-r from-amber-500 via-rose-400 to-emerald-400 px-6 py-3 font-semibold text-black shadow-xl shadow-amber-500/20 transition focus:outline-none disabled:opacity-60"
       >
+        <span className="absolute inset-0 -translate-x-full bg-white/30 transition group-hover:translate-x-0" />
         {loading ? 'Joining…' : 'Join the Waitlist'}
       </button>
       {status.type && (
-        <p className={status.type === 'success' ? 'text-green-700' : 'text-red-700'}>
+        <p className={status.type === 'success' ? 'text-emerald-300' : 'text-rose-300'}>
           {status.message}
         </p>
       )}
-    </form>
+    </motion.form>
   )
 }
