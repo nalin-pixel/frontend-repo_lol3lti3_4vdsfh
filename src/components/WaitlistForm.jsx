@@ -52,14 +52,14 @@ export default function WaitlistForm() {
           placeholder="Your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/40 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400/60"
+          className="w-full rounded-xl border border-white/15 bg-black/40 text-white placeholder-white/40 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400/60"
         />
         <input
           type="email"
           placeholder="Email address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/40 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400/60"
+          className="w-full rounded-xl border border-white/15 bg-black/40 text-white placeholder-white/40 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400/60"
         />
       </div>
       <input
@@ -67,15 +67,16 @@ export default function WaitlistForm() {
         placeholder="Preferred notes (optional)"
         value={note}
         onChange={(e) => setNote(e.target.value)}
-        className="w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/40 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400/60"
+        className="w-full rounded-xl border border-white/15 bg-black/40 text-white placeholder-white/40 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400/60"
       />
       <button
         type="submit"
         disabled={loading}
-        className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-gradient-to-r from-amber-500 via-rose-400 to-emerald-400 px-6 py-3 font-semibold text-black shadow-xl shadow-amber-500/20 transition focus:outline-none disabled:opacity-60"
+        className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-black text-white ring-1 ring-white/15 px-6 py-3 font-semibold shadow-[0_20px_60px_rgba(0,0,0,0.7)] transition focus:outline-none disabled:opacity-60"
       >
-        <span className="absolute inset-0 -translate-x-full bg-white/30 transition group-hover:translate-x-0" />
-        {loading ? 'Joining…' : 'Join the Waitlist'}
+        <span className="absolute inset-0 bg-[radial-gradient(600px_200px_at_0%_50%,rgba(255,179,71,0.35),transparent_70%),radial-gradient(600px_200px_at_100%_50%,rgba(77,255,192,0.35),transparent_70%)] opacity-60" />
+        <span className="absolute inset-0 -translate-x-full bg-white/10 transition group-hover:translate-x-0" />
+        <span className="relative">{loading ? 'Joining…' : 'Join the Waitlist'}</span>
       </button>
       {status.type && (
         <p className={status.type === 'success' ? 'text-emerald-300' : 'text-rose-300'}>
